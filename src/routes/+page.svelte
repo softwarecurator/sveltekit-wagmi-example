@@ -18,7 +18,6 @@
   <button on:click={disconnectWagmi}>disconnect</button>
 {:else}
   <button on:click={WC}>walletconnect connect</button>
-  <!-- injected has a bug where stores dont update upon refresh -->
   <button on:click={async () => await connection()}
     >injected browser connect</button
   >

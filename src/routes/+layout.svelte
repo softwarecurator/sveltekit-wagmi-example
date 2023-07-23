@@ -1,14 +1,19 @@
 <script lang="ts">
-  import { configureWagmi, wagmiLoaded } from "svelte-wagmi";
+  import { defaultConfig, wagmiLoaded } from "svelte-wagmi";
   import { onMount } from "svelte";
+  import {
+    PUBLIC_ALCHEMY_KEY,
+    PUBLIC_WALLETCONNECT_PROJECTID,
+  } from "$env/static/public";
 
   onMount(async () => {
-    await configureWagmi({
-      walletconnect: true,
-      walletconnectProjectID: "wallet-connect-project-id",
-      alchemyKey: "alchemy-key",
-      autoConnect: true,
+    const erckit = defaultConfig({
+      appName: "erc.kit",
+      walletConnectProjectId: PUBLIC_WALLETCONNECT_PROJECTID,
+      alchemyId: PUBLIC_ALCHEMY_KEY,
     });
+
+    await erckit.init();
   });
 </script>
 
